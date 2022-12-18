@@ -1,11 +1,16 @@
+---
 kind: pipeline
 type: docker
 name: greeting
-
 steps:
-- name: backend
-  image: docker
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock:ro
-  commands:
-  - docker ps
+  - name: backend
+    image: docker
+    volumes:
+      - name: docker_sock
+        path: /var/run/docker.sock
+    commands:
+      - docker ps
+volumes:
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock
