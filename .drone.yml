@@ -3,7 +3,9 @@ type: docker
 name: greeting
 
 steps:
-- name: en
-  image: alpine
+- name: backend
+  image: docker
+  volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock:ro"
   commands:
-  - ls
+  - docker ps
